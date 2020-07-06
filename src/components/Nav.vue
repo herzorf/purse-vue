@@ -1,9 +1,18 @@
 <template>
-    <div>
-        <router-link to="labels">标签</router-link>
-        <router-link to="add">记账</router-link>
-        <router-link to="statistics">统计</router-link>
-    </div>
+    <nav>
+        <router-link to="labels" class="nav-item" active-class="active">
+            <Icon name="label"/>
+            标签
+        </router-link>
+        <router-link to="add" class="nav-item" active-class="active">
+            <Icon name="add"/>
+            记账
+        </router-link>
+        <router-link to="statistics" class="nav-item" active-class="active">
+            <Icon name="statistics"/>
+            统计
+        </router-link>
+    </nav>
 </template>
 
 <script lang="ts">
@@ -13,5 +22,27 @@
 </script>
 
 <style scoped lang="scss">
-
+    @import "~@/assets/reset.scss";
+    nav{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        box-shadow: 0 0 12px rgb(0,0,0,0.25);
+        >.nav-item{
+            width: 33.3333%;
+            font-size: 20px;
+            padding: 16px;
+            color: $color;
+            >.icon{
+                height: 22px;
+                width: 22px;
+            }
+        }
+        .active{
+            color:#fff;
+            background-color: #0779e4;
+        }
+    }
 </style>
+
