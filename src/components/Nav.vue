@@ -22,7 +22,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "~@/assets/reset.scss";
+    @import "~@/assets/helper.scss";
     nav{
         display: flex;
         align-items: center;
@@ -33,7 +33,7 @@
             width: 33.3333%;
             font-size: 20px;
             padding: 16px;
-            color: $color;
+            color: $orange;
             >.icon{
                 height: 22px;
                 width: 22px;
@@ -42,6 +42,9 @@
         .active{
             color:#fff;
             background-color: #0779e4;
+            .icon{
+                color: white;
+            }
         }
     }
 </style>
