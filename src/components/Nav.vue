@@ -28,7 +28,7 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        box-shadow: 0 0 12px rgb(0,0,0,0.25);
+        @extend %outerShadow;
         >.nav-item{
             width: 33.3333%;
             font-size: 20px;
@@ -41,7 +41,7 @@
         }
         .active{
             color:#fff;
-            background-color: #0779e4;
+            background-color: $blue;
             .icon{
                 color: white;
             }

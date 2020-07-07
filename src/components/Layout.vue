@@ -1,6 +1,6 @@
 <template>
     <div class="layout">
-        <div class="content">
+        <div class="content" :class=" classContent && `${classContent}-content`">
             <slot></slot>
         </div>
         <Nav/>
@@ -9,7 +9,8 @@
 
 <script lang="ts">
     export default {
-        name: "Layout"
+        props:["classContent"],
+        name: "Layout",
     };
 </script>
 
@@ -24,5 +25,4 @@
      }
 
  }
-
 </style>
