@@ -21,9 +21,6 @@
            }
            this.type = type;
        }
-       mounted(): void {
-           console.log(this.type);
-       }
     }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
     <div class="numberPad">
-        <div class="output">100</div>
-        <div class="numbers">
+        <div class="output">{{output === ""? "0" : output}}</div>
+        <div class="numbers" @click="padOperating">
             <button>1</button>
             <button>2</button>
             <button>3</button>
@@ -22,9 +22,49 @@
 </template>
 
 <script lang="ts">
-    export default {
-        name: "NumberPad"
-    };
+    import {Component} from "vue-property-decorator";
+    import Vue from "vue";
+
+    @Component
+    export default class NumberPad extends Vue {
+        output = "0";
+
+        padOperating(event: MouseEvent) {
+            const button = event.target as HTMLButtonElement;
+            const output = button.textContent as string;
+            console.log(output);
+            if(output === "OK"){
+                console.log("保存成功");
+            }
+            if(output === "清空"){
+                this.output = "0";
+                return;
+            }
+            if(output === "删除"){
+                this.output = this.output.slice(0,-1);
+                return;
+            }
+            if (this.output.length >= 13) {
+                return;
+            }
+            if (this.output.indexOf(".") >= 0) {
+                if (output === ".") {
+                    return;
+                }
+            }
+            if (this.output === "0") {
+                if ("0123456789".indexOf(output) >= 0) {
+                    this.output = output;
+                } else {
+                    this.output += output;
+                }
+                return;
+            }else if('01234556789.'.indexOf(output) >=0){
+                this.output += output;
+            }
+
+        }
+    }
 </script>
 
 <style scoped lang="scss">
@@ -57,11 +97,13 @@
                 &.zero {
                     width: 50%;
                 }
-                border-radius: 8px ;
+
+                border-radius: 8px;
                 background-color: $blue;
                 border: none;
                 color: white;
-                &:active{
+
+                &:active {
                     background-color: #fff;
                     color: $blue;
                 }
