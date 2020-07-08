@@ -1,17 +1,30 @@
 <template>
     <div class="type">
         <ul>
-            <li class="selected">支出</li>
-            <li>收入</li>
+            <li :class="type === '-' && 'selected' " @click="selectType('-')">支出</li>
+            <li :class="type === '+' && 'selected' " @click="selectType('+')">收入</li>
         </ul>
     </div>
 
 </template>
 
 <script lang="ts">
-    export default {
-        name: "Type"
-    };
+    import {Component} from "vue-property-decorator";
+    import Vue from 'vue';
+
+    @Component
+   export default class Type extends Vue{
+       type =  "-";
+       selectType(type: string){
+           if(type !== "-" && type !== "+"){
+               throw new Error("type is not unknown")
+           }
+           this.type = type;
+       }
+       mounted(): void {
+           console.log(this.type);
+       }
+    }
 </script>
 
 <style scoped lang="scss">
