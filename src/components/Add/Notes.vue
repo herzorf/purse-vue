@@ -1,0 +1,45 @@
+<template>
+    <div class="notes">
+        <label>
+            <span>备注</span>
+            <input type="text" placeholder="在这里添加备注">
+        </label>
+    </div>
+
+</template>
+
+<script lang="ts">
+    export default {
+        name: "Notes"
+    };
+</script>
+
+<style scoped lang="scss">
+    @import "~@/assets/helper.scss";
+
+    .notes {
+        > label {
+            display: flex;
+            background: $blue;
+            color: #fff;
+            padding: 0.25em;
+
+            > span {
+                padding: 1em;
+            }
+
+            > input {
+                flex-grow: 1;
+                background: none;
+                border: none;
+                color: #ffffff;
+                font-size: 16px;
+
+                &::-webkit-input-placeholder {
+                    color: white;
+                }
+            }
+        }
+    }
+
+</style>

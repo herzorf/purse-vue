@@ -17,3 +17,10 @@ ul,ol{
 :focus{
   outline: none;
 }
+
+@media (min-width: 800px) {
+  html{
+    width:400px;
+    margin: 0 auto;
+  }
+}
