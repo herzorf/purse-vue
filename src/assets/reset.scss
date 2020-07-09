@@ -1,9 +1,11 @@
+@import "helper";
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 body{
+  background: $bg;
   line-height: 1.5em;
   font-size: 16px;
 }
