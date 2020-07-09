@@ -1,6 +1,6 @@
 <template>
     <div class="numberPad">
-        <div class="output">{{output === ""? "0" : output}}</div>
+        <div class="output">{{output}}</div>
         <div class="numbers" @click="padOperating">
             <button>1</button>
             <button>2</button>
@@ -32,16 +32,20 @@
         padOperating(event: MouseEvent) {
             const button = event.target as HTMLButtonElement;
             const output = button.textContent as string;
-            console.log(output);
-            if(output === "OK"){
+            if (output === "OK") {
+                this.$emit("update:value", this.output);
                 console.log("保存成功");
+                return;
             }
-            if(output === "清空"){
+            if (output === "清空") {
                 this.output = "0";
                 return;
             }
-            if(output === "删除"){
-                this.output = this.output.slice(0,-1);
+            if (output === "删除") {
+                this.output = this.output.slice(0, -1);
+                if (this.output === "") {
+                    this.output = "0";
+                }
                 return;
             }
             if (this.output.length >= 13) {
@@ -59,7 +63,7 @@
                     this.output += output;
                 }
                 return;
-            }else if('01234556789.'.indexOf(output) >=0){
+            } else if ("01234556789.".indexOf(output) >= 0) {
                 this.output += output;
             }
 
