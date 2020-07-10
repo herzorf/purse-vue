@@ -3,7 +3,8 @@
         <label>
             <span>{{fieldName}}</span>
             <input type="text"
-                   v-model="value"
+                   :value="value"
+                   @input="onUpdateNotes(value)"
                    :placeholder="placeholder"/>
         </label>
     </div>
@@ -16,11 +17,10 @@
 
     @Component
     export default class Notes extends Vue {
-        value = "";
+        @Prop({default: ""}) readonly value !: string;
         @Prop({required: true}) fieldName !: string;
         @Prop() placeholder?: string;
 
-        @Watch("value")
         onUpdateNotes(value: string) {
             this.$emit("update:value", value);
         }
