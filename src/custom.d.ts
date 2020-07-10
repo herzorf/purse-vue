@@ -5,3 +5,13 @@ type RecordItem = {
     amount: number;
     createAt? : Date;
 }
+type label = {
+    id: string;
+    name: string;
+}
+type ModelTagList = {
+    data: label[];
+    read: () => label[];
+    write: () => void;
+    create: (name: string) => void;
+}

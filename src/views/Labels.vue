@@ -1,13 +1,14 @@
 <template>
     <div>
         <Layout class="wrapper">
-            <ul>
-                <li v-for="tag in tagList" :key="tag">
-                    <span>{{tag}}</span>
+            <div class="ul">
+                <RouterLink v-for="tag in tagList" :key="tag.id"
+                :to="`/editLabel/${tag.id}`">
+                    <span>{{tag.name}}</span>
                     <Icon name="right"/>
-                </li>
+                </RouterLink>
 
-            </ul>
+            </div>
             <div class="button-wrapper">
                 <button @click="addTag">新增标签</button>
             </div>
@@ -38,11 +39,11 @@
     .wrapper {
         font-size: 18px;
 
-        ul {
+        .ul {
             background: #fff;
             padding: 4px 0;
 
-            > li {
+            > a {
                 line-height: 36px;
                 display: flex;
                 justify-content: space-between;

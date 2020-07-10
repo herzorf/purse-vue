@@ -2,10 +2,10 @@
     <div class="tags">
         <ul>
             <li v-for="tag in dataSource"
-                @click="toggle(tag)"
-                :class="{selected: selectedTags.indexOf(tag) >= 0}"
-                :key="tag"
-            >{{tag}}</li>
+                @click="toggle(tag.id)"
+                :class="{selected: selectedTags.indexOf(tag.id) >= 0}"
+                :key="tag.id"
+            >{{tag.name}}</li>
         </ul>
         <button @click="addLabels">新增标签</button>
     </div>
@@ -19,7 +19,7 @@
 
     @Component
     export default class Tags extends Vue {
-        @Prop() dataSource: string[] |  undefined;
+        @Prop() dataSource: label[] |  undefined;
         selectedTags: string[] = [];
         toggle(tag: string){
             const index = this.selectedTags.indexOf(tag);
