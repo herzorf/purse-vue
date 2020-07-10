@@ -9,9 +9,7 @@
                 </RouterLink>
 
             </div>
-            <div class="button-wrapper">
-                <button @click="addTag">新增标签</button>
-            </div>
+            <Button @click.native="addTag">新增标签</Button>
         </Layout>
     </div>
 </template>
@@ -20,8 +18,11 @@
     import Vue from "vue";
     import {Component} from "vue-property-decorator";
     import {modelTagList} from "@/models/model-tagList";
+    import Button from "@/components/Button.vue";
     modelTagList.read();
-    @Component
+    @Component({
+        components: {Button}
+    })
     export default class Labels extends Vue {
         tagList = modelTagList.data;
         addTag(){
@@ -52,20 +53,6 @@
                 padding-right: 8px;
                 margin-left: 8px;
 
-            }
-        }
-
-        .button-wrapper {
-            text-align: center;
-
-            > button {
-                background: $blue;
-                border: none;
-                color: #FFF;
-                font-size: 18px;
-                border-radius: 4px;
-                padding: 8px 8px;
-                margin-top: 2em;
             }
         }
 

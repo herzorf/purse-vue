@@ -14,7 +14,7 @@
 <script lang="ts">
     import Vue from "vue";
     import Tags from "@/components/Add/Tags.vue";
-    import Notes from "@/components/Add/Notes.vue";
+    import Notes from "@/components/Add/InputForm.vue";
     import Type from "@/components/Add/Type.vue";
     import NumberPad from "@/components/Add/NumberPad.vue";
     import {Component, Watch} from "vue-property-decorator";
