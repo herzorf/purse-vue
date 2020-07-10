@@ -1,5 +1,11 @@
-const tagList = "tagList";
+import {createID} from "@/lib/createID";
 
+const tagList = "tagList";
+const defaultLabels: label[] = [
+    {id: createID(),name:"衣"},
+    {id: createID(),name:"食"},
+    {id: createID(),name:"住"},
+    {id: createID(),name:"行"}];
 const modelTagList: ModelTagList = {
     data: [],
     write() {
@@ -7,11 +13,7 @@ const modelTagList: ModelTagList = {
     },
 
     read() {
-        this.data = JSON.parse(window.localStorage.getItem(tagList) ||
-            "[{\"id\":\"衣\",\"name\":\"衣\"}," +
-            "{\"id\":\"食\",\"name\":\"食\"}," +
-            "{\"id\":\"住\",\"name\":\"住\"}," +
-            "{\"id\":\"行\",\"name\":\"行\"}]") as label[];
+        this.data = JSON.parse(window.localStorage.getItem(tagList) || JSON.stringify(defaultLabels) ) as label[];
         this.write();
         return this.data;
     },
@@ -21,7 +23,7 @@ const modelTagList: ModelTagList = {
             alert("标签名已存在");
             return;
         }
-        this.data.push({id: name, name});
+        this.data.push({id: createID(), name});
         this.write();
     },
 
