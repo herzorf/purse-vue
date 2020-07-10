@@ -1,10 +1,10 @@
 import Vue from "vue";
 import VueRouter, {RouteConfig} from "vue-router";
-import Home from "../views/Home.vue";
 import Add from "@/views/Add.vue";
 import Labels from "@/views/Labels.vue";
 import Statistics from "@/views/Statistics.vue";
 import NotFound from "@/views/NotFound.vue";
+import EditLabel from "@/views/EditLabel.vue";
 
 Vue.use(VueRouter);
 
@@ -26,21 +26,14 @@ const routes: Array<RouteConfig> = [
         component: Statistics
     },
     {
+        path : "/editLabel",
+        component: EditLabel
+    },
+    {
         path : '*',
         component: NotFound
     }
 
-
-    // {
-    //     path: "/",
-    //     name: "Home",
-    //     component: Home
-    // },
-    // {
-    //     path: "/about",
-    //     name: "About",
-    //     component: () => import(/* webpackChunkName: "about" */ "../views/About.vue")
-    // }
 ];
 
 const router = new VueRouter({

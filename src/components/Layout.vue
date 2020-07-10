@@ -19,7 +19,6 @@
      height: 100vh;
      display: flex;
      flex-direction: column;
-     border: 1px solid red;
      >.content{
          flex-grow: 1;
      }

@@ -15,6 +15,7 @@
 <script lang="ts">
     import Vue from "vue";
     import {Component, Prop} from "vue-property-decorator";
+    import {modelTagList} from "@/models/model-tagList";
 
     @Component
     export default class Tags extends Vue {
@@ -32,11 +33,7 @@
         addLabels(){
             const name = window.prompt("请输入标签名");
             if(name && name !== ""){
-                if(this.dataSource){
-                    this.$emit("update:dataSource",[...this.dataSource,name])
-                }
-            }else{
-                return;
+                modelTagList.create(name);
             }
         }
     }

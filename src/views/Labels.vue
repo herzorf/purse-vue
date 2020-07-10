@@ -2,34 +2,34 @@
     <div>
         <Layout class="wrapper">
             <ul>
-                <li>
-                    <span> 衣</span>
+                <li v-for="tag in tagList" :key="tag">
+                    <span>{{tag}}</span>
                     <Icon name="right"/>
                 </li>
-                <li>
-                    <span> 食</span>
-                    <Icon name="right"/>
-                </li>
-                <li>
-                    <span> 住</span>
-                    <Icon name="right"/>
-                </li>
-                <li>
-                    <span> 行</span>
-                    <Icon name="right"/>
-                </li>
+
             </ul>
             <div class="button-wrapper">
-                <button>新增标签</button>
+                <button @click="addTag">新增标签</button>
             </div>
         </Layout>
     </div>
 </template>
 
 <script lang="ts">
-    export default {
-        name: "Labels",
-    };
+    import Vue from "vue";
+    import {Component} from "vue-property-decorator";
+    import {modelTagList} from "@/models/model-tagList";
+    modelTagList.read();
+    @Component
+    export default class Labels extends Vue {
+        tagList = modelTagList.data;
+        addTag(){
+            const name  = window.prompt("请输入标签名:");
+            if(name ){
+                modelTagList.create(name);
+            }
+        }
+    }
 </script>
 
 <style scoped lang="scss">
@@ -37,9 +37,11 @@
 
     .wrapper {
         font-size: 18px;
+
         ul {
             background: #fff;
             padding: 4px 0;
+
             > li {
                 line-height: 36px;
                 display: flex;
@@ -54,6 +56,7 @@
 
         .button-wrapper {
             text-align: center;
+
             > button {
                 background: $blue;
                 border: none;

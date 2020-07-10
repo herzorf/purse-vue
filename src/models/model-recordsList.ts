@@ -1,5 +1,5 @@
 const recordsList = "recordsList";
-const model = {
+const modelRecordsList = {
     read() {
         return  JSON.parse(window.localStorage.getItem(recordsList) || "[]") as RecordItem[];
     },
@@ -10,4 +10,4 @@ const model = {
        return  JSON.parse(JSON.stringify(record));
     }
 };
-export {model}
+export {modelRecordsList}

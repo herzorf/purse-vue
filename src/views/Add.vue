@@ -17,12 +17,13 @@
     import NumberPad from "@/components/Add/NumberPad.vue";
     import {Component, Watch} from "vue-property-decorator";
     import {modelRecordsList} from "@/models/model-recordsList";
+    import {modelTagList} from "@/models/model-tagList";
 
     @Component({
         components: {NumberPad, Type, Notes, Tags},
     })
     export default class Add extends Vue {
-        tags = ["衣", "食", "住", "行"];
+        tags = modelTagList.read();
         recordsList = modelRecordsList.read();
         record: RecordItem = {
             tags: [],
