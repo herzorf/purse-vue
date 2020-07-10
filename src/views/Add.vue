@@ -16,14 +16,14 @@
     import Type from "@/components/Add/Type.vue";
     import NumberPad from "@/components/Add/NumberPad.vue";
     import {Component, Watch} from "vue-property-decorator";
-    import {model} from "@/model";
+    import {modelRecordsList} from "@/models/model-recordsList";
 
     @Component({
         components: {NumberPad, Type, Notes, Tags},
     })
     export default class Add extends Vue {
         tags = ["衣", "食", "住", "行"];
-        recordsList = model.read();
+        recordsList = modelRecordsList.read();
         record: RecordItem = {
             tags: [],
             notes: "",
@@ -44,14 +44,14 @@
         }
 
         onSubmit() {
-            const deepCloneRecord = model.clone(this.record);
+            const deepCloneRecord = modelRecordsList.clone(this.record);
             deepCloneRecord.createAt = new Date();
             this.recordsList.push(deepCloneRecord)
             console.log(this.recordsList);
         }
         @Watch("recordsList")
         onRecordsListChange(){
-            model.write(this.recordsList)
+            modelRecordsList.write(this.recordsList)
         }
     }
 </script>
