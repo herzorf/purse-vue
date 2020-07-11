@@ -14,4 +14,6 @@ type ModelTagList = {
     read: () => label[];
     write: () => void;
     create: (name: string) => void;
+    update: (id: string,name: string) => void;
+    remove: (id: string) => void;
 }

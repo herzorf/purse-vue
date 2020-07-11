@@ -1,12 +1,12 @@
 <template>
     <Layout>
         <header>
-            <Icon name="left"/>
+            <Icon name="left" @click.native="goBack"/>
             <span>编辑标签</span>
             <Icon/>
         </header>
-        <Notes fieldName="标签名" placeholder="请输入标签名"/>
-        <Button>删除标签</Button>
+        <Notes fieldName="标签名" :value="label.name" @update:value="changeLabel" placeholder="请输入标签名"/>
+        <Button @click.native="removeLabel">删除标签</Button>
     </Layout>
 </template>
 
@@ -21,13 +21,26 @@
         components: {Button, Notes}
     })
     export default class EditLabel extends Vue {
+        label?: label = undefined;
+
         created(): void {
             const id = this.$route.params.id;
             const labels = modelTagList.data;
-            const label = labels.filter(item => item.id === id)[0];
-            if (!label) {
+            this.label = labels.filter(item => item.id === id)[0];
+            if (!this.label) {
                 this.$router.replace("/404");
             }
+        }
+
+        changeLabel(value: string) {
+            this.label && modelTagList.update(this.label.id, value);
+        }
+
+        removeLabel() {
+            this.label && modelTagList.remove(this.label.id);
+        }
+        goBack(){
+            this.$router.back()
         }
     }
 </script>

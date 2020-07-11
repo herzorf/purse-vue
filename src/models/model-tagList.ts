@@ -1,11 +1,17 @@
 import {createID} from "@/lib/createID";
 
 const tagList = "tagList";
-const defaultLabels: label[] = [
-    {id: createID(),name:"衣"},
-    {id: createID(),name:"食"},
-    {id: createID(),name:"住"},
-    {id: createID(),name:"行"}];
+const xxx = () =>{
+    if(!window.localStorage.getItem(tagList)){
+        const defaultLabels: label[] = [
+            {id: createID(),name:"衣"},
+            {id: createID(),name:"食"},
+            {id: createID(),name:"住"},
+            {id: createID(),name:"行"}];
+        window.localStorage.setItem(tagList,JSON.stringify(defaultLabels))
+    }
+};
+xxx()
 const modelTagList: ModelTagList = {
     data: [],
     write() {
@@ -13,7 +19,7 @@ const modelTagList: ModelTagList = {
     },
 
     read() {
-        this.data = JSON.parse(window.localStorage.getItem(tagList) || JSON.stringify(defaultLabels) ) as label[];
+        this.data = JSON.parse(window.localStorage.getItem(tagList) || "[]") as label[];
         this.write();
         return this.data;
     },
@@ -26,6 +32,16 @@ const modelTagList: ModelTagList = {
         this.data.push({id: createID(), name});
         this.write();
     },
+    update(id: string,name: string){
+        const label = this.data.filter((item)=> item.id === id)[0];
+        label.name = name;
+        this.write()
+    },
 
+    remove(id: string){
+        this.data = this.data.filter((item) => item.id !== id);
+        this.write()
+        window.history.back()
+    }
 };
 export {modelTagList};

@@ -10,6 +10,10 @@ Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
     {
+        path : "/editLabel/:id",
+        component: EditLabel
+    },
+    {
         path: "/",
         redirect: "/add"
     },
@@ -25,10 +29,7 @@ const routes: Array<RouteConfig> = [
         path : "/statistics",
         component: Statistics
     },
-    {
-        path : "/editLabel/:id",
-        component: EditLabel
-    },
+
     {
         path : '*',
         component: NotFound

@@ -4,7 +4,7 @@
             <span>{{fieldName}}</span>
             <input type="text"
                    :value="value"
-                   @input="onUpdateNotes(value)"
+                   @input="onUpdateNotes($event.target.value)"
                    :placeholder="placeholder"/>
         </label>
     </div>
@@ -13,7 +13,7 @@
 
 <script lang="ts">
     import Vue from "vue";
-    import {Component, Prop, Watch} from "vue-property-decorator";
+    import {Component, Prop} from "vue-property-decorator";
 
     @Component
     export default class Notes extends Vue {
