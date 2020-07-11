@@ -1,14 +1,14 @@
 <template>
     <nav>
-        <router-link to="labels" class="nav-item" active-class="active">
+        <router-link to="/labels" class="nav-item" active-class="active">
             <Icon name="label"/>
             标签
         </router-link>
-        <router-link to="add" class="nav-item" active-class="active">
+        <router-link to="/add" class="nav-item" active-class="active">
             <Icon name="add"/>
             记账
         </router-link>
-        <router-link to="statistics" class="nav-item" active-class="active">
+        <router-link to="/statistics" class="nav-item" active-class="active">
             <Icon name="statistics"/>
             统计
         </router-link>
