@@ -5,9 +5,9 @@
         <div class="info">
             <ol>
                 <li v-for="(group ,index) in result()" :key="index">
-                   <h3>{{group.title}}</h3>
+                    <h3>{{group.title}}</h3>
                     <ol>
-                        <li v-for="item in group.item" :key="item.id">
+                        <li v-for="item in selectType(group.item)" :key="item.id">
                             <span>{{item.tags.join(",")}}</span>
                             <span class="notes">{{item.notes}}</span>
                             <span>￥{{item.amount}}</span>
@@ -37,6 +37,10 @@
         interval = interval;
         type = type;
         recordList: RecordItem[] = [];
+
+        selectType(array: RecordItem[]) {
+            return array.filter((item) => item.type === this.typeValue);
+        }
 
         result() {
             const hashTable: { [key: string]: { title: string; item: RecordItem[] } } = {};
@@ -73,27 +77,31 @@
             background: $blue;
         }
     }
-    .info{
 
-        >ol{
+    .info {
 
-            >li{
-                >h3{
+        > ol {
+
+            > li {
+                > h3 {
                     font-weight: normal;
                     padding: 0 16px;
                 }
-                >ol{
+
+                > ol {
                     font-size: 16px;
                     background: #fff;
                     padding: 0 16px;
-                    >li{
+
+                    > li {
                         color: $blue;
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
                         padding: 8px 0;
                         border-bottom: 1px solid $blue;
-                        .notes{
+
+                        .notes {
                             margin-right: auto;
                             margin-left: 16px;
                             color: $orange;
