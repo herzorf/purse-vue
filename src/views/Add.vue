@@ -5,7 +5,7 @@
             <Notes
                     placeholder="在这里添加备注"
                     fieldName="备注" @update:value="onUpdateNote"/>
-            <Type :value.sync="record.type"/>
+            <Tabs :data-sourse="type" :value.sync="record.type"/>
             <NumberPad @update:value="onUpdateAmount" @submit="onSubmit"/>
         </Layout>
     </div>
@@ -20,9 +20,11 @@
     import {Component, Watch} from "vue-property-decorator";
     import {modelRecordsList} from "@/models/model-recordsList";
     import {modelTagList} from "@/models/model-tagList";
+    import Tabs from "@/components/Tabs.vue";
+    import {type} from "@/constants/type";
 
     @Component({
-        components: {NumberPad, Type, Notes, Tags},
+        components: {Tabs, NumberPad, Type, Notes, Tags},
     })
     export default class Add extends Vue {
         tags = modelTagList.read();
@@ -33,7 +35,7 @@
             type: "-",
             amount: 0
         };
-
+        type = type
         onUpdateTags(tags: string[]) {
             this.record.tags = tags;
         }

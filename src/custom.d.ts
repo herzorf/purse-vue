@@ -17,3 +17,7 @@ type ModelTagList = {
     update: (id: string,name: string) => void;
     remove: (id: string) => void;
 }
+type tab = {
+    text: string;
+    value: string;
+}
