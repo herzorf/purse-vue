@@ -15,7 +15,6 @@
     import Vue from "vue";
     import Tags from "@/components/Add/Tags.vue";
     import Notes from "@/components/Add/InputForm.vue";
-    import Type from "@/components/Add/Type.vue";
     import NumberPad from "@/components/Add/NumberPad.vue";
     import {Component, Watch} from "vue-property-decorator";
     import {modelRecordsList} from "@/models/model-recordsList";
@@ -24,7 +23,7 @@
     import {type} from "@/constants/type";
 
     @Component({
-        components: {Tabs, NumberPad, Type, Notes, Tags},
+        components: {Tabs, NumberPad, Notes, Tags},
     })
     export default class Add extends Vue {
         tags = modelTagList.read();
@@ -35,7 +34,8 @@
             type: "-",
             amount: 0
         };
-        type = type
+        type = type;
+
         onUpdateTags(tags: string[]) {
             this.record.tags = tags;
         }
@@ -50,13 +50,14 @@
 
         onSubmit() {
             const deepCloneRecord = modelRecordsList.clone(this.record);
-            deepCloneRecord.createAt = new Date();
-            this.recordsList.push(deepCloneRecord)
+            deepCloneRecord.createAt = new Date().toISOString();
+            this.recordsList.push(deepCloneRecord);
             console.log(this.recordsList);
         }
+
         @Watch("recordsList")
-        onRecordsListChange(){
-            modelRecordsList.write(this.recordsList)
+        onRecordsListChange() {
+            modelRecordsList.write(this.recordsList);
         }
     }
 </script>

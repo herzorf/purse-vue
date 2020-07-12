@@ -11,7 +11,7 @@ const xxx = () =>{
         window.localStorage.setItem(tagList,JSON.stringify(defaultLabels))
     }
 };
-xxx()
+xxx();
 const modelTagList: ModelTagList = {
     data: [],
     write() {
