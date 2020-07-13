@@ -1,7 +1,6 @@
 <template>
     <Layout>
         <Tabs class-prefix="type" :data-sourse="type" :value.sync="typeValue"/>
-        <Tabs class-prefix="tabs" :data-sourse="interval" :value.sync="tabsValue"/>
         <div class="info">
             <ol>
                 <li v-for="(group ,index) in result()" :key="index">
@@ -24,7 +23,6 @@
     import Vue from "vue";
     import {Component} from "vue-property-decorator";
     import Tabs from "@/components/Tabs.vue";
-    import {interval} from "@/constants/interval";
     import {type} from "@/constants/type";
     import {modelRecordsList} from "@/models/model-recordsList";
 
@@ -33,8 +31,6 @@
     })
     export default class Statistics extends Vue {
         typeValue = "-";
-        tabsValue = "day";
-        interval = interval;
         type = type;
         recordList: RecordItem[] = [];
 
@@ -53,7 +49,7 @@
         }
 
         mounted() {
-            this.recordList = modelRecordsList.read();
+            this.recordList = modelRecordsList.read().reverse();
             this.result();
         }
     }

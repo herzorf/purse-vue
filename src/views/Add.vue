@@ -1,8 +1,9 @@
 <template>
     <div>
         <Layout classContent="prefix">
-            <Tags :data-source.sync="tags" @update:selected="onUpdateTags"/>
+            <Tags :data-source.sync="tags" :selected-tags.sync="record.tags" @update:selected="onUpdateTags"/>
             <Notes
+                    :value="record.notes"
                     placeholder="在这里添加备注"
                     fieldName="备注" @update:value="onUpdateNote"/>
             <Tabs :data-sourse="type" :value.sync="record.type"/>
@@ -49,26 +50,31 @@
         }
 
         onSubmit() {
+            if (this.record.tags.length === 0) {
+                return alert("请至少选择一个标签");
+            } else if (this.record.amount === 0) {
+                return alert("记账金额不能为'0'");
+            }
             const deepCloneRecord = modelRecordsList.clone(this.record);
             deepCloneRecord.createAt = new Date().toISOString();
             this.recordsList.push(deepCloneRecord);
-            console.log(this.recordsList);
+            this.record.notes =''
+            alert("记账成功");
         }
 
         @Watch("recordsList")
         onRecordsListChange() {
             modelRecordsList.write(this.recordsList);
         }
+
     }
 </script>
 <style lang="scss">
     .prefix-content {
-        border: 1px solid red;
         display: flex;
         flex-direction: column;
 
         > .tags {
-            border: 1px solid green;
             flex-grow: 1;
             display: flex;
             flex-direction: column;

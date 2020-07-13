@@ -5,7 +5,8 @@
                 @click="toggle(tag.name)"
                 :class="{selected: selectedTags.indexOf(tag.name) >= 0}"
                 :key="tag.id"
-            >{{tag.name}}</li>
+            >{{tag.name}}
+            </li>
         </ul>
         <button @click="addLabels">新增标签</button>
     </div>
@@ -19,20 +20,22 @@
 
     @Component
     export default class Tags extends Vue {
-        @Prop() dataSource: label[] |  undefined;
+        @Prop() dataSource: label[] | undefined;
         selectedTags: string[] = [];
-        toggle(tag: string){
+
+        toggle(tag: string) {
             const index = this.selectedTags.indexOf(tag);
-            if(index >= 0){
-                this.selectedTags.splice(index,1);
-            }else{
+            if (index >= 0) {
+                this.selectedTags.splice(index, 1);
+            } else {
                 this.selectedTags.push(tag);
             }
-            this.$emit("update:selected", this.selectedTags)
+            this.$emit("update:selected", this.selectedTags);
         }
-        addLabels(){
+
+        addLabels() {
             const name = window.prompt("请输入标签名");
-            if(name && name !== ""){
+            if (name && name !== "") {
                 modelTagList.create(name);
             }
         }
@@ -58,7 +61,8 @@
                 border-radius: 15px;
                 margin-right: 1em;
                 margin-top: 0.5em;
-                &.selected{
+
+                &.selected {
                     background: $orange;
                 }
             }
